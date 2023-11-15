@@ -10,7 +10,7 @@ class Hangman():
 
 
     def choose_random_word(self):
-        possible_words = ["mouse", "snake", "zebra"]  
+        possible_words = ["mouse", "snake", "zebra", "renato", "cica"]  
         word = random.choice(possible_words)
         self.correct_choices_to_win = len(word)
         return word
@@ -49,7 +49,6 @@ class Hangman():
     def main(self):
         self.greet_player()
         word = self.choose_random_word()
-        print(word)
         blank_lines = self.generate_blank_lines(word)
         while self.player_lives > 0 and self.correct_choices_to_win > 0:
             self.guess_word(blank_lines, word)
