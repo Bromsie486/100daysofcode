@@ -1,12 +1,13 @@
 import random
 from hangman_database import words
+from hangman_art import logo
 class Hangman():
     def __init__(self):
         self.player_lives = 6
 
 
     def greet_player(self):
-        print("Welcome to Hangman!")
+        print(logo)
 
 
     def choose_random_word(self):
