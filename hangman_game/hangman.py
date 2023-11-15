@@ -1,4 +1,5 @@
 import random
+from hangman_database import words
 class Hangman():
     def __init__(self):
         self.player_lives = 6
@@ -9,7 +10,7 @@ class Hangman():
 
 
     def choose_random_word(self):
-        possible_words = ["mouse", "snake", "zebra", "renato", "cica"]  
+        possible_words = words 
         word = random.choice(possible_words)
         self.correct_choices_to_win = len(word)
         return word
@@ -52,7 +53,7 @@ class Hangman():
         while self.player_lives > 0 and self.correct_choices_to_win > 0:
             self.guess_word(blank_lines, word)
         if self.player_lives == 0:
-            print("Game over")
+            print(f"Game over\nThe word was {word}")
         else:
             print("You win!")
 
