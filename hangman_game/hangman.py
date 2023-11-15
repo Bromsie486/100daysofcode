@@ -1,6 +1,5 @@
 import random
 class Hangman():
-
     def __init__(self):
         self.player_lives = 6
 
