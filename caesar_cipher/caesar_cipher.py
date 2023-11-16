@@ -9,7 +9,7 @@ class Caesar_Cipher():
 
     def ask_for_input(self):
         user_input = {}
-        user_input["direction"] = input("Encode or decode?").lower()
+        user_input["direction"] = input("Encode or decode? ").lower()
         # while user_input["direction"] != "encode" or user_input["direction"] != "decode":
         #     user_input["direction"] = input("Please write either encode or decode.").lower()
 
@@ -22,19 +22,13 @@ class Caesar_Cipher():
     def caesar(self, user_input):
         placeholder = ""
 
-        if user_input["direction"] == "encode":
-            for letter in user_input["text"]:
-                if letter.isalpha():
+        for letter in user_input["text"]:
+            if letter.isalpha():
+                if user_input["direction"] == "encode":
                     position = self.alphabet.index(letter)
                     new_position = position + user_input["shift"]
                     placeholder += self.alphabet[new_position]
                 else:
-                    placeholder += letter
-            print(f"Your ciphered text is: {placeholder}")
-            
-        else:
-            for letter in user_input["text"]:
-                if letter.isalpha():
                     occurence_counter = 0
                     for char in self.alphabet:
                         if char == letter:
@@ -43,9 +37,9 @@ class Caesar_Cipher():
                                 position = self.alphabet.index(char)
                     new_position = position - user_input["shift"]
                     placeholder += self.alphabet[new_position]
-                else:
-                    placeholder += letter
-            print(f"Your original text is: {placeholder}")
+            else:
+                placeholder += letter
+        print(f"Your ciphered text is: {placeholder}")
 
 
     def main(self):
