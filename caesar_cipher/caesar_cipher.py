@@ -25,11 +25,11 @@ class Caesar_Cipher():
             position = self.alphabet.index(letter)
             new_position = position + user_input["shift"]
             cipher_text += self.alphabet[new_position]
-        print(cipher_text)
+        print(f"Your ciphered text is: {cipher_text}")
 
 
     def decode(self, user_input):
-        cipher_text = ""
+        plain_text = ""
         for letter in user_input["text"]:
             occurence_counter = 0
             for char in self.alphabet:
@@ -38,8 +38,8 @@ class Caesar_Cipher():
                     if occurence_counter == 2:
                         position = self.alphabet.index(char)
             new_position = position - user_input["shift"]
-            cipher_text += self.alphabet[new_position]
-        print(cipher_text)
+            plain_text += self.alphabet[new_position]
+        print(f"Your original text is: {plain_text}")
         
 
     def main(self):
