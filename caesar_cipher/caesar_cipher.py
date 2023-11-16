@@ -10,8 +10,8 @@ class Caesar_Cipher():
     def ask_for_input(self):
         user_input = {}
         user_input["direction"] = input("Encode or decode? ").lower()
-        # while user_input["direction"] != "encode" or user_input["direction"] != "decode":
-        #     user_input["direction"] = input("Please write either encode or decode.").lower()
+        while user_input["direction"] != "encode" and user_input["direction"] != "decode":
+            user_input["direction"] = input("Please write either encode or decode. ").lower()
 
         user_input["text"] = input("Type your message: ")
         user_input["shift"] = int(input("Type your shift number: "))
