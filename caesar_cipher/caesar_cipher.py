@@ -39,7 +39,7 @@ class Caesar_Cipher():
                     placeholder += self.alphabet[new_position]
             else:
                 placeholder += letter
-        print(f"Your ciphered text is: {placeholder}")
+        print(f"Your shifted text is: {placeholder}")
 
 
     def main(self):
