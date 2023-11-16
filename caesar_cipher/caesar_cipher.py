@@ -24,20 +24,27 @@ class Caesar_Cipher():
 
         if user_input["direction"] == "encode":
             for letter in user_input["text"]:
-                position = self.alphabet.index(letter)
-                new_position = position + user_input["shift"]
-                placeholder += self.alphabet[new_position]
+                if letter.isalpha():
+                    position = self.alphabet.index(letter)
+                    new_position = position + user_input["shift"]
+                    placeholder += self.alphabet[new_position]
+                else:
+                    placeholder += letter
             print(f"Your ciphered text is: {placeholder}")
+            
         else:
             for letter in user_input["text"]:
-                occurence_counter = 0
-                for char in self.alphabet:
-                    if char == letter:
-                        occurence_counter += 1
-                        if occurence_counter == 2:
-                            position = self.alphabet.index(char)
-                new_position = position - user_input["shift"]
-                placeholder += self.alphabet[new_position]
+                if letter.isalpha():
+                    occurence_counter = 0
+                    for char in self.alphabet:
+                        if char == letter:
+                            occurence_counter += 1
+                            if occurence_counter == 2:
+                                position = self.alphabet.index(char)
+                    new_position = position - user_input["shift"]
+                    placeholder += self.alphabet[new_position]
+                else:
+                    placeholder += letter
             print(f"Your original text is: {placeholder}")
 
 
