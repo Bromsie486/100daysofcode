@@ -27,15 +27,27 @@ class Caesar_Cipher():
             cipher_text += self.alphabet[new_position]
         print(cipher_text)
 
-    #def decode(user_input):
+
+    def decode(self, user_input):
+        cipher_text = ""
+        for letter in user_input["text"]:
+            occurence_counter = 0
+            for char in self.alphabet:
+                if char == letter:
+                    occurence_counter += 1
+                    if occurence_counter == 2:
+                        position = self.alphabet.index(char)
+            new_position = position - user_input["shift"]
+            cipher_text += self.alphabet[new_position]
+        print(cipher_text)
         
 
     def main(self):
         user_input = self.ask_for_input()
         if user_input["direction"] == "encode":
             self.encode(user_input)
-        # else:
-        #     self.decode(user_input)
+        elif user_input["direction"] == "decode":
+            self.decode(user_input)
         
         
 if __name__ == "__main__":
