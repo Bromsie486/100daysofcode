@@ -19,36 +19,31 @@ class Caesar_Cipher():
         return user_input
 
 
-    def encode(self, user_input):
-        cipher_text = ""
-        for letter in user_input["text"]:
-            position = self.alphabet.index(letter)
-            new_position = position + user_input["shift"]
-            cipher_text += self.alphabet[new_position]
-        print(f"Your ciphered text is: {cipher_text}")
+    def caesar(self, user_input):
+        placeholder = ""
 
+        if user_input["direction"] == "encode":
+            for letter in user_input["text"]:
+                position = self.alphabet.index(letter)
+                new_position = position + user_input["shift"]
+                placeholder += self.alphabet[new_position]
+            print(f"Your ciphered text is: {placeholder}")
+        else:
+            for letter in user_input["text"]:
+                occurence_counter = 0
+                for char in self.alphabet:
+                    if char == letter:
+                        occurence_counter += 1
+                        if occurence_counter == 2:
+                            position = self.alphabet.index(char)
+                new_position = position - user_input["shift"]
+                placeholder += self.alphabet[new_position]
+            print(f"Your original text is: {placeholder}")
 
-    def decode(self, user_input):
-        plain_text = ""
-        for letter in user_input["text"]:
-            occurence_counter = 0
-            for char in self.alphabet:
-                if char == letter:
-                    occurence_counter += 1
-                    if occurence_counter == 2:
-                        position = self.alphabet.index(char)
-            new_position = position - user_input["shift"]
-            plain_text += self.alphabet[new_position]
-        print(f"Your original text is: {plain_text}")
-        
 
     def main(self):
         user_input = self.ask_for_input()
-        if user_input["direction"] == "encode":
-            self.encode(user_input)
-        elif user_input["direction"] == "decode":
-            self.decode(user_input)
-        
+        self.caesar(user_input)
         
 if __name__ == "__main__":
     caesear_cipher = Caesar_Cipher()
