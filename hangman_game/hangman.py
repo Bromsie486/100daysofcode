@@ -27,7 +27,6 @@ class Hangman():
 
 
     def guess_word(self, blank_lines, word):
-        #ask for input
         guess = input("Guess a letter! ").lower()
         while len(guess) != 1 or guess in self.guessed_words:
             if len(guess) != 1:
