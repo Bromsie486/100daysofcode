@@ -21,25 +21,45 @@ class Blackjack_Game():
         self.deck = []
         self.player_hand_value = 0
         self.computer_hand_value = 0
+        self.number_of_player_aces = 0
+        self.number_of_computer_aces = 0
 
 
     def main(self):
         self.load_deck()
         while input("Do you want to play a game of Blackjack?(y/n) ").lower() != "n":
-            player_hand = self.generate_player_hand()
+            #generate player and computer hand
+            player_hand = self.generate_hand("player")
             print(f"This is your hand: {player_hand[0]}, {player_hand[1]}")
+            computer_hand = self.generate_hand("computer")
+            print(f"This is the computer's hand: {computer_hand[0]}, ?")
+
+            #user can ask for as many cars as he wants before reaching 21
             while input("Do you want another card? (y/n) ").lower() != "n":
-                player_hand.append(self.generate_player_hand(1)[0])
+                player_hand.append(self.generate_hand("player", 1)[0])
                 output_text = self.generate_output(player_hand)
                 print(f"This is your new hand: {output_text}")
+            
 
 
-    def generate_player_hand(self, amount_to_generate = 2):
+    def generate_hand(self, hand_owner, amount_to_generate = 2):
         generated_cards = []
-        for i in range(amount_to_generate):
+        for _ in range(amount_to_generate):
             card = random.choice(self.deck)
             self.deck.pop(self.deck.index(card))
             generated_cards.append(card)
+            if card != "A":
+                if hand_owner == "player":
+                    self.player_hand_value += self.value_table[card]
+                else:
+                    self.computer_hand_value += self.value_table[card]
+            else: 
+                if hand_owner == "player":
+                    self.number_of_player_aces += 1
+                    self.player_hand_value += 1
+                else:
+                    self.number_of_computer_aces += 1
+                    self.computer_hand_value += 1
         return generated_cards
 
 
