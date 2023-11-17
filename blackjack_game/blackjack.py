@@ -48,19 +48,57 @@ class Blackjack_Game():
                         self.reset_variables_to_default()
                         raise Exception("Game Over")
                 
-            except:
-                continue
+                #computer drawing until above 16
+                if self.computer_hand_value < 16:
+                    while self.computer_hand_value < 16:
+                        computer_hand.append(self.generate_hand("computer", 1)[0])
+                        if self.computer_hand_value > 21:
+                            print("You win, the computer went over 21!")
+                            self.reset_variables_to_default()
+                            raise Exception("Game won")
+                    self.determine_final_result()
+                      
+                else:
 
-            #computer drawing until above 16
-            try:
-                while self.computer_hand_value < 16:
-                    computer_hand.append(self.generate_hand("computer", 1)[0])
-                    if self.computer_hand_value > 21:
-                        print("You win, the computer went over 21!")
-                        self.reset_variables_to_default()
-                        raise Exception("Game won")
             except:
                 continue
+    
+    
+    def determine_final_result(self, player_hand, computer_hand):
+        #calculate final score for computer
+        if self.number_of_computer_aces > 0:
+            if self.computer_hand_value + 10 > 21:
+                final_computer_result = self.computer_hand_value
+            else:
+                final_computer_result = self.computer_hand_value + 10
+        else:
+            final_computer_result = self.computer_hand_value
+        
+        #calculate final score for player
+        if self.number_of_player_aces > 0:
+            if self.player_hand_value + 10 > 21:
+                final_player_result = self.player_hand_value
+            else:
+                final_player_result = self.player_hand_value + 10
+        else:
+            final_player_result = self.player_hand_value
+        
+
+        #calculate result
+        output_text_for_player = self.generate_output(player_hand)
+        output_text_for_computer = self.generate_output(computer_hand)
+        print(f"This is the player's final hand: {output_text_for_player}")
+        print(f"This is the computer's final hand: {output_text_for_computer}")
+        print(f"Final player score: {final_player_result}")
+        print(f"Final computer score: {final_computer_result}")
+        if final_computer_result > final_player_result:
+            print("You have lost.")
+        elif final_player_result == final_computer_result:
+            print("This is a draw!")
+        else:
+            print("You have won!")
+
+
 
     
     def reset_variables_to_default(self):
