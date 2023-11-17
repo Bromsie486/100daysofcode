@@ -39,6 +39,7 @@ class Blackjack_Game():
                 player_hand.append(self.generate_hand("player", 1)[0])
                 output_text = self.generate_output(player_hand)
                 print(f"This is your new hand: {output_text}")
+                print(f"This is the computer's hand: {computer_hand[0]}, ?")
             
 
 
