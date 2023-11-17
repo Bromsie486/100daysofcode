@@ -45,14 +45,29 @@ class Blackjack_Game():
                     print(f"This is the computer's hand: {computer_hand[0]}, ?")
                     if self.player_hand_value > 21:
                         print("You lost, you went over 21. Game over!")
+                        self.reset_variables_to_default()
                         raise Exception("Game Over")
-                
                 
             except:
                 continue
 
-            
+            #computer drawing until above 16
+            try:
+                while self.computer_hand_value < 16:
+                    computer_hand.append(self.generate_hand("computer", 1)[0])
+                    if self.computer_hand_value > 21:
+                        print("You win, the computer went over 21!")
+                        self.reset_variables_to_default()
+                        raise Exception("Game won")
+            except:
+                continue
 
+    
+    def reset_variables_to_default(self):
+        self.player_hand_value = 0
+        self.computer_hand_value = 0
+        self.number_of_player_aces = 0
+        self.number_of_computer_aces = 0
 
 
     def generate_hand(self, hand_owner, amount_to_generate = 2):
