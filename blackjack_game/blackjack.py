@@ -53,6 +53,8 @@ class Blackjack_Game():
                     while self.computer_hand_value < 16:
                         computer_hand.append(self.generate_hand("computer", 1)[0])
                         if self.computer_hand_value > 21:
+                            output_text_for_computer = self.generate_output(computer_hand)
+                            print(f"This is the computer's final hand: {output_text_for_computer}")
                             print("You win, the computer went over 21!")
                             self.reset_variables_to_default()
                             raise Exception("Game won")
