@@ -29,18 +29,30 @@ class Blackjack_Game():
         self.load_deck()
         while input("Do you want to play a game of Blackjack?(y/n) ").lower() != "n":
             #generate player and computer hand
+            os.system("clear")
             player_hand = self.generate_hand("player")
             print(f"This is your hand: {player_hand[0]}, {player_hand[1]}")
             computer_hand = self.generate_hand("computer")
             print(f"This is the computer's hand: {computer_hand[0]}, ?")
 
-            #user can ask for as many cars as he wants before reaching 21
-            while input("Do you want another card? (y/n) ").lower() != "n":
-                player_hand.append(self.generate_hand("player", 1)[0])
-                output_text = self.generate_output(player_hand)
-                print(f"This is your new hand: {output_text}")
-                print(f"This is the computer's hand: {computer_hand[0]}, ?")
+            #user can ask for as many cards as he wants before reaching 21
+            try:
+                while input("Do you want another card? (y/n) ").lower() != "n":
+                    os.system("clear")
+                    player_hand.append(self.generate_hand("player", 1)[0])
+                    output_text = self.generate_output(player_hand)
+                    print(f"This is your new hand: {output_text}")
+                    print(f"This is the computer's hand: {computer_hand[0]}, ?")
+                    if self.player_hand_value > 21:
+                        print("You lost, you went over 21. Game over!")
+                        raise Exception("Game Over")
+                
+                
+            except:
+                continue
+
             
+
 
 
     def generate_hand(self, hand_owner, amount_to_generate = 2):
