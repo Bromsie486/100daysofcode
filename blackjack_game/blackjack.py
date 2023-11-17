@@ -53,15 +53,17 @@ class Blackjack_Game():
                     while self.computer_hand_value < 16:
                         computer_hand.append(self.generate_hand("computer", 1)[0])
                         if self.computer_hand_value > 21:
+                            os.system("clear")
                             output_text_for_computer = self.generate_output(computer_hand)
                             print(f"This is the computer's final hand: {output_text_for_computer}")
                             print("You win, the computer went over 21!")
                             self.reset_variables_to_default()
                             raise Exception("Game won")
-                    self.determine_final_result()
-                      
+                    self.determine_final_result(player_hand, computer_hand)
+                    self.reset_variables_to_default()
                 else:
-
+                    self.determine_final_result(player_hand, computer_hand)
+                    self.reset_variables_to_default()
             except:
                 continue
     
@@ -87,6 +89,7 @@ class Blackjack_Game():
         
 
         #calculate result
+        os.system("clear")
         output_text_for_player = self.generate_output(player_hand)
         output_text_for_computer = self.generate_output(computer_hand)
         print(f"This is the player's final hand: {output_text_for_player}")
@@ -99,8 +102,6 @@ class Blackjack_Game():
             print("This is a draw!")
         else:
             print("You have won!")
-
-
 
     
     def reset_variables_to_default(self):
@@ -155,3 +156,4 @@ if __name__ == "__main__":
 
 #todo
 #handle when the deck runs out of cards
+#handle aces as they are drawn by the computer
