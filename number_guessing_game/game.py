@@ -43,7 +43,12 @@ class Number_Guessing_Game():
             self.player_lives = 5
 
         number = self.generate_number()
-        guess = int(input("Guess a number: ").replace(" ",""))
+        try:
+            guess = int(input("Guess a number: ").replace(" ",""))
+        except ValueError:
+            print("That's not a number, exiting the program!")
+            sys.exit()
+
         while True:
             if guess == number:
                 print("You have guessed the number! You win!")
@@ -55,10 +60,18 @@ class Number_Guessing_Game():
                     print(f"You are out of lives. The number was {number}")
                     self.should_play_another_round()
                 if guess > number:
-                    guess = int(input(f"Lower! Remaning lives: {self.player_lives}\n Guess again! ").replace(" ",""))
+                    try:
+                        guess = int(input(f"Lower! Remaning lives: {self.player_lives}\n Guess again! ").replace(" ",""))
+                    except ValueError:
+                        print("That's not a number, exiting the program!")
+                        sys.exit()
                 else:
-                    guess = int(input(f"Higher! Remaning lives: {self.player_lives}\n Guess again! ").replace(" ",""))
-                
+                    try:
+                        guess = int(input(f"Higher! Remaning lives: {self.player_lives}\n Guess again! ").replace(" ",""))
+                    except ValueError:
+                        print("That's not a number, exiting the program!")
+                        sys.exit()
+
 
 if __name__ == "__main__":
     number_guessing_game = Number_Guessing_Game()
