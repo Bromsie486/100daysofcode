@@ -43,7 +43,7 @@ class Number_Guessing_Game():
             self.player_lives = 5
 
         number = self.generate_number()
-        guess = int(input("Guess a number: "))
+        guess = int(input("Guess a number: ").replace(" ",""))
         while True:
             if guess == number:
                 print("You have guessed the number! You win!")
@@ -55,9 +55,9 @@ class Number_Guessing_Game():
                     print(f"You are out of lives. The number was {number}")
                     self.should_play_another_round()
                 if guess > number:
-                    guess = int(input(f"Lower! Remaning lives: {self.player_lives}\n Guess again! "))
+                    guess = int(input(f"Lower! Remaning lives: {self.player_lives}\n Guess again! ").replace(" ",""))
                 else:
-                    guess = int(input(f"Higher! Remaning lives: {self.player_lives}\n Guess again! "))
+                    guess = int(input(f"Higher! Remaning lives: {self.player_lives}\n Guess again! ").replace(" ",""))
                 
 
 if __name__ == "__main__":
