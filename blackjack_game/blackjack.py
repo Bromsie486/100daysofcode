@@ -1,6 +1,8 @@
 import random
 import os
 
+from art import logo
+
 class Blackjack_Game():
 
     def __init__(self):
@@ -26,6 +28,7 @@ class Blackjack_Game():
 
 
     def main(self):
+        print(logo)
         self.load_deck()
         while input("Do you want to play a game of Blackjack?(y/n) ").lower() != "n":
             #generate player and computer hand
