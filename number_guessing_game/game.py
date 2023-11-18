@@ -1,10 +1,13 @@
 import random
 import os
 
+from art import logo
+
 class Number_Guessing_Game():
 
     def greet(self):
         os.system("clear")
+        print(logo)
         print("Welcome to the Number guessing game!")
         difficulty = input("Would you like to play on easy or hard? ").lower()
         return difficulty
