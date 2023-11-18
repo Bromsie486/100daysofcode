@@ -1,5 +1,6 @@
 import random
 import os
+import sys
 
 from art import logo
 
@@ -14,6 +15,15 @@ class Number_Guessing_Game():
         return difficulty
     
 
+    def should_play_another_round(self):
+        should_continue = input("Would you like to play another round? (y/n) ").lower()
+        if should_continue == "y":
+            self.main()
+        else:
+            print("Okay, see you soon!")
+            sys.exit()
+
+
     def generate_number(self):
         return random.randint(0,101)
     
@@ -22,7 +32,7 @@ class Number_Guessing_Game():
         if self.player_lives == 0:
             return True
         return False
-
+    
 
     def main(self):
         difficulty = self.greet()
@@ -37,17 +47,13 @@ class Number_Guessing_Game():
         while True:
             if guess == number:
                 print("You have guessed the number! You win!")
+                self.should_play_another_round()
                 break
             else:
                 self.player_lives -= 1
                 if self.check_if_player_is_out_of_lives():
                     print(f"You are out of lives. The number was {number}")
-                    should_continue = input("Would you like to play another round? (y/n) ").lower()
-                    if should_continue == "y":
-                        self.main()
-                    else:
-                        print("Okay, see you soon!")
-                        break
+                    self.should_play_another_round()
                 if guess > number:
                     guess = int(input(f"Lower! Remaning lives: {self.player_lives}\n Guess again! "))
                 else:
