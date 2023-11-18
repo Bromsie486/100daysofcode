@@ -9,12 +9,13 @@ class Number_Guessing_Game():
         os.system("clear")
         print(logo)
         print("Welcome to the Number guessing game!")
+        print("I'm thinking of a number between 1 and 100")
         difficulty = input("Would you like to play on easy or hard? ").lower()
         return difficulty
     
 
     def generate_number(self):
-        return random.randint(0,100)
+        return random.randint(0,101)
     
 
     def check_if_player_is_out_of_lives(self):
