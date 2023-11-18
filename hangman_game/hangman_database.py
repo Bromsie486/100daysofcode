@@ -160,5 +160,6 @@ words = [
     "strengths",
     "stretch",
     "stronghold",
-    "stymied"
+    "stymied",
+    "birdy"
 ]
