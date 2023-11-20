@@ -3,7 +3,11 @@ import os
 
 class Higher_Lower_Game():
 
-    def main():
+    def __init__(self) -> None:
+        self.player_score = 0
+
+
+    def main(self):
         pass
 
 
